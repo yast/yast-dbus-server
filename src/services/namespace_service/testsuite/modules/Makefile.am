@@ -6,7 +6,7 @@ EXTRA_DIST = $(yast_modules)
 yast_modules_ybc = $(yast_modules:.ycp=.ybc)
 
 $(yast_modules_ybc): $(yast_modules)
-	../../../../base/tools/ycpc/ycpc -c $<
+	ycpc -c $<
 
 all: $(yast_modules_ybc)
 

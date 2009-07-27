@@ -18,7 +18,7 @@
 
 #include <functional>
 
-#include <Y2WFMComponent.h>
+#include <wfm/Y2WFMComponent.h>
 
 #include "yast_dbus_names.h"
 

@@ -80,4 +80,16 @@ AC_SUBST(HAVE_POLKIT)
 AM_CONDITIONAL([HAVE_POLKIT], [test "x$HAVE_POLKIT" = x1])
 
 ## and generate the output
+AC_CONFIG_FILES([
+	src/services/namespace_service/src/yast_dbus_names.h
+	src/services/namespace_service/src/org.opensuse.yast.module-manager.policy
+	src/services/namespace_service/src/org.opensuse.YaST.modules.conf
+	src/services/namespace_service/src/org.opensuse.YaST.modules.service.in
+	src/services/SCR_service/org.opensuse.yast.SCR.conf
+	src/services/SCR_service/org.opensuse.yast.SCR.service.in
+	src/services/SCR_service/scr_names.h
+	src/services/SCR_service/test_SCR_dbus_server.rb
+])
+
+## and generate the output
 @YAST2-OUTPUT@
