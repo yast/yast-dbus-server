@@ -5,7 +5,7 @@
 
  */
 
-#include "ScriptingAgent.h"
+#include <scr/ScriptingAgent.h>
 
 #include "DBusServer.h"
 #include "DBusMsg.h"

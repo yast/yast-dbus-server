@@ -10,15 +10,15 @@ EXTRA_DIST=org.opensuse.yast.SCR.service.in.in \
 
 AM_CXXFLAGS = -DY2LOG=\"SCR-service\" -DSUSEVERSION=\"${SUSEVERSION}\"
 
-INCLUDES = ${AGENT_INCLUDES}
+INCLUDES = ${AGENT_INCLUDES} -I$(includedir)
 
 ybin_PROGRAMS = SCR_dbus_server
 
 SCR_dbus_server_SOURCES = SCR_dbus_server.cc DBusServer.cc DBusServer.h
 
-SCR_dbus_server_CPPFLAGS = $(AM_CPPFLAGS) $(DBUS_CFLAGS) $(POLKIT_CFLAGS) -I$(top_builddir)/liby2dbus/src -I$(srcdir)/../../scr/src -I$(top_builddir)/libscr/src/include
+SCR_dbus_server_CPPFLAGS = $(AM_CPPFLAGS) $(DBUS_CFLAGS) $(POLKIT_CFLAGS) -I$(top_builddir)/src/liby2dbus/src
 
-SCR_dbus_server_LDADD = ${AGENT_LIBADD} $(top_builddir)/liby2dbus/src/liby2dbus.la $(top_builddir)/scr/src/libpy2scr.la
+SCR_dbus_server_LDADD = ${AGENT_LIBADD} $(top_builddir)/src/liby2dbus/src/liby2dbus.la -lycp -ly2 -ly2util ${libdir}/YaST2/plugin/libpy2scr.la
 
 # PolicyKit defaults
 polkit_policiesdir = `pkg-config --print-errors --variable policydir polkit`

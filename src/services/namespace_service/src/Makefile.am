@@ -7,15 +7,17 @@ EXTRA_DIST=org.opensuse.YaST.modules.service.in.in org.opensuse.YaST.modules.con
 
 AM_CXXFLAGS = -DY2LOG=\"DBus-service\" -DSUSEVERSION=\"${SUSEVERSION}\"
 
-INCLUDES = ${AGENT_INCLUDES}
+INCLUDES = ${AGENT_INCLUDES} -I$(includedir)
+
+AM_LDFLAGS = -L${libdir}
 
 ybin_PROGRAMS = yast_modules_dbus_server
 
 yast_modules_dbus_server_SOURCES = yast_modules_dbus_server.cc DBusModulesServer.cc DBusModulesServer.h
 
-yast_modules_dbus_server_CPPFLAGS = $(AM_CPPFLAGS) $(DBUS_CFLAGS) $(POLKIT_CFLAGS) -I$(top_builddir)/liby2dbus/src -I$(srcdir)/../../scr/src -I$(top_builddir)/libscr/src/include -I$(top_builddir)/wfm/src
+yast_modules_dbus_server_CPPFLAGS = $(AM_CPPFLAGS) $(DBUS_CFLAGS) $(POLKIT_CFLAGS) -I$(top_builddir)/src/liby2dbus/src -I$(includedir)
 
-yast_modules_dbus_server_LDADD = ${AGENT_LIBADD} $(top_builddir)/liby2dbus/src/liby2dbus.la $(top_builddir)/scr/src/libpy2scr.la $(top_builddir)/wfm/src/libpy2wfm.la
+yast_modules_dbus_server_LDADD = ${AGENT_LIBADD} $(top_builddir)/src/liby2dbus/src/liby2dbus.la -lycp -ly2 -ly2util ${libdir}/YaST2/plugin/libpy2wfm.la
 
 # PolicyKit defaults
 polkit_policiesdir = `pkg-config --print-errors --variable policydir polkit`
