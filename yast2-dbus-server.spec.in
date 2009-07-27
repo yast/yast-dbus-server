@@ -1,0 +1,87 @@
+@HEADER-COMMENT@
+
+
+@HEADER@
+Group:	System/YaST
+License: GPL v2 or later
+# obviously
+BuildRequires:	gcc-c++
+# needed for all yast packages
+BuildRequires:	yast2-devtools
+# testsuite
+BuildRequires:	dejagnu
+# autodocs
+BuildRequires:	doxygen
+# docbook docs
+BuildRequires:	docbook-xsl-stylesheets libxslt
+# catalog: convert URIs to local filenames
+BuildRequires:	sgml-skel
+
+# for SCR DBus service
+BuildRequires:	dbus-1-devel dbus-1-x11 PolicyKit-devel
+
+Summary:	YaST2 - Core Libraries
+
+%description
+This package contains the scanner, parser, and interpreter runtime
+library for the YCP scripting language used in YaST2.
+
+#@HEADER-DEVEL@
+#Summary:	YaST2 - Core Libraries
+#	Provides:	liby2util-devel = 2.16.1
+#	Obsoletes:	liby2util-devel < 2.16.1
+#Requires:	libxcrypt-devel hwinfo-devel
+#Requires:	glibc-devel libstdc++-devel pcre-devel libblocxx-devel sysfsutils
+# required for libscr
+#Requires:	PolicyKit-devel dbus-1-devel
+
+@PREP@
+
+%build
+@BUILD@
+
+@INSTALL@
+
+@CLEAN@
+
+%post
+/sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+%files
+%defattr(-,root,root)
+
+%dir %{_libdir}/YaST2
+%if "%_lib" == "lib64"
+%dir /usr/lib/YaST2
+%endif
+%dir /usr/share/YaST2
+
+%dir %attr(0700,root,root) @logdir@
+%dir @ybindir@
+%dir @plugindir@
+%dir @scrconfdir@
+%dir @execcompdir@/servers
+%dir @execcompdir@/servers_non_y2
+
+%{_libdir}/lib*.so.*
+@plugindir@/lib*.so.*
+@scrconfdir@/*.scr
+@execcompdir@/servers/scr
+@execcompdir@/servers_non_y2/ag_*
+
+# DBus service
+@ybindir@/SCR_dbus_server
+# DBus service config
+/usr/share/dbus-1/system-services/org.opensuse.yast.SCR.service
+%config /etc/dbus-1/system.d/org.opensuse.yast.SCR.conf
+# PolicyKit default policies
+/usr/share/PolicyKit/policy/org.opensuse.yast.scr.policy
+
+# DBus namespace service
+@ybindir@/yast_modules_dbus_server
+/usr/share/dbus-1/system-services/org.opensuse.YaST.modules.service
+%config /etc/dbus-1/system.d/org.opensuse.YaST.modules.conf
+/usr/share/PolicyKit/policy/org.opensuse.yast.module-manager.policy
+
