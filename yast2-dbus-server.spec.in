@@ -7,7 +7,7 @@ License: GPL v2 or later
 # obviously
 BuildRequires:	gcc-c++
 # needed for all yast packages
-BuildRequires:	yast2-devtools
+BuildRequires:	yast2-devtools yast2-core-devel
 # testsuite
 BuildRequires:	dejagnu
 # autodocs
@@ -18,22 +18,13 @@ BuildRequires:	docbook-xsl-stylesheets libxslt
 BuildRequires:	sgml-skel
 
 # for SCR DBus service
-BuildRequires:	dbus-1-devel dbus-1-x11 PolicyKit-devel
+BuildRequires:	dbus-1-devel dbus-1-x11 PolicyKit-devel libxcrypt-devel
 
-Summary:	YaST2 - Core Libraries
+Summary:	YaST2 - DBus Server
 
 %description
-This package contains the scanner, parser, and interpreter runtime
-library for the YCP scripting language used in YaST2.
-
-#@HEADER-DEVEL@
-#Summary:	YaST2 - Core Libraries
-#	Provides:	liby2util-devel = 2.16.1
-#	Obsoletes:	liby2util-devel < 2.16.1
-#Requires:	libxcrypt-devel hwinfo-devel
-#Requires:	glibc-devel libstdc++-devel pcre-devel libblocxx-devel sysfsutils
-# required for libscr
-#Requires:	PolicyKit-devel dbus-1-devel
+This package contains YaST DBus service, it provides DBus access 
+to YaST components.
 
 @PREP@
 
@@ -41,6 +32,10 @@ library for the YCP scripting language used in YaST2.
 @BUILD@
 
 @INSTALL@
+
+# remove not needed development files
+rm %{buildroot}/@plugindir@/liby2dbus.la
+rm %{buildroot}/@plugindir@/liby2dbus.so
 
 @CLEAN@
 
@@ -52,24 +47,7 @@ library for the YCP scripting language used in YaST2.
 %files
 %defattr(-,root,root)
 
-%dir %{_libdir}/YaST2
-%if "%_lib" == "lib64"
-%dir /usr/lib/YaST2
-%endif
-%dir /usr/share/YaST2
-
-%dir %attr(0700,root,root) @logdir@
-%dir @ybindir@
-%dir @plugindir@
-%dir @scrconfdir@
-%dir @execcompdir@/servers
-%dir @execcompdir@/servers_non_y2
-
-%{_libdir}/lib*.so.*
 @plugindir@/lib*.so.*
-@scrconfdir@/*.scr
-@execcompdir@/servers/scr
-@execcompdir@/servers_non_y2/ag_*
 
 # DBus service
 @ybindir@/SCR_dbus_server
@@ -84,4 +62,6 @@ library for the YCP scripting language used in YaST2.
 /usr/share/dbus-1/system-services/org.opensuse.YaST.modules.service
 %config /etc/dbus-1/system.d/org.opensuse.YaST.modules.conf
 /usr/share/PolicyKit/policy/org.opensuse.yast.module-manager.policy
+
+%doc @docdir@
 
