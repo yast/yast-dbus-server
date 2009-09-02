@@ -44,10 +44,11 @@ rm %{buildroot}/@plugindir@/liby2dbus.so
 # This is a workaround for dbus reloading too soon. (bnc#502719#c4).
 # In oS 11.2 there exists rcdbus reload, so this is for a SLE backport.
 # The /dev/null is a workaround for http://bugs.freedesktop.org/show_bug.cgi?id=896#c23
-dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig >/dev/null
+# But if there is nothing to reload, don't fail.
+dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig >/dev/null || true
 
 %postun -p /sbin/ldconfig
-dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig >/dev/null
+dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig >/dev/null || true
 
 %files
 %defattr(-,root,root)
