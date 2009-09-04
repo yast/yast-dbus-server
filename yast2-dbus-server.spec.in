@@ -47,7 +47,8 @@ rm %{buildroot}/@plugindir@/liby2dbus.so
 # But if there is nothing to reload, don't fail.
 dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig >/dev/null || true
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
 dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig >/dev/null || true
 
 %files
