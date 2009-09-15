@@ -6,6 +6,7 @@ Copy the desktop configuration and the DBus client script using these commands:
 sudo cp dbus_samba_export.desktop /usr/share/kde4/services/ServiceMenus/
 sudo cp dbus_samba_export.py /usr/bin
 sudo cp polkit_helper.py /usr/bin
+sudo cp org.opensuse.yast.modules.yapi.samba.policy /usr/share/PolicyKit/policy/
 
 If the Samba server has been configured (by the system administrator) users who
 have org.opensuse.yast.modules.yapi.samba.addshare PolicyKit authorization can

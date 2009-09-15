@@ -1,6 +1,5 @@
 #! /usr/bin/python
 # example-arch.py
-# Test http://svn.opensuse.org/svn/yast/branches/tmp/lslezak/core/dbus/namespace_service
 
 # By default nobody, not even root, can call anything.
 # Let's grant us a permission for a call for which there is no policyconfig
@@ -8,12 +7,7 @@
 # As root:
 # # polkit-auth --user $USER --grant org.opensuse.yast.modules.arch.is-laptop
 
-# Start the service from an xterm. If you let it autostart, it will not
-# be able to ask for PolicyKit authorization for --explicit.
-# (That's because whe have the polkit logic wrong and
-# ask in the server instead of in the client. TODO.)
-# As root:
-# # /usr/lib/YaST2/bin/yast_modules_dbus_server --disable-timer &
+# Revoke the permission (as root):
 # # polkit-auth --user $USER --revoke org.opensuse.yast.modules.arch.is-laptop
 
 import dbus
