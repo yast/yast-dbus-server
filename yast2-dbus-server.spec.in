@@ -20,6 +20,9 @@ BuildRequires:	sgml-skel
 # for SCR DBus service
 BuildRequires:	dbus-1-devel dbus-1-x11 PolicyKit-devel libxcrypt-devel
 
+# this package was part of yast2-core originally
+Conflicts:      yast2-core < 2.17.31
+
 Summary:	YaST2 - DBus Server
 
 %description

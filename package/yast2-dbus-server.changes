@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Fri Sep 25 13:32:56 CEST 2009 - lslezak@suse.cz
+
+- Initial version (2.17.0)
+
+-------------------------------------------------------------------
 Fri Sep  4 18:06:38 CEST 2009 - mvidner@suse.cz
 
 - don't use ldconfig as a shell in postun
@@ -7,10 +12,4 @@ Fri Sep  4 18:06:38 CEST 2009 - mvidner@suse.cz
 Wed Sep  2 17:10:18 CEST 2009 - mvidner@suse.cz
 
 - Call rcdbus reload in %post(un) (bnc#502719).
-- 2.18.1
-
--------------------------------------------------------------------
-Mon Jul 27 09:37:48 CEST 2009 - lslezak@suse.cz
-
-- Initial version (2.18.0)
 
