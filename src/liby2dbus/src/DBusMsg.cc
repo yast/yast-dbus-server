@@ -386,18 +386,16 @@ bool DBusMsg::addValueAt(const YCPValue &val, DBusMessageIter *i, constTypePtr r
 
 	DBusMessageIter array_it;
 
-	YCPMap::const_iterator mit = map.begin();
-
 	std::string map_signature("{" + map_key_type + map_val_type + "}");
 
 	// open array container
 	y2debug("Opening DICT container with signature: %s", map_signature.c_str());
 	dbus_message_iter_open_container(i, DBUS_TYPE_ARRAY, map_signature.c_str(), &array_it);
 
-	for(YCPMap::const_iterator mit = map.begin(); mit != map.end() ; ++mit)
+	for(YCPMapIterator mit = map.begin(); mit != map.end() ; ++mit)
 	{
-	    YCPValue key = mit->first;
-	    YCPValue val = mit->second;
+	    YCPValue key = mit.key();
+	    YCPValue val = mit.value();
 
 	    DBusMessageIter map_item_it;
 	    y2debug("Opening map item container");
@@ -542,10 +540,10 @@ bool DBusMsg::addYCPValueRaw(const YCPValue &val, DBusMessageIter *i)
 	y2debug("Opening DICT container");
 	dbus_message_iter_open_container(i, DBUS_TYPE_ARRAY, "{(bsv)(bsv)}", &array_it);
 
-	for(YCPMap::const_iterator mit = map.begin(); mit != map.end() ; ++mit)
+	for(YCPMapIterator mit = map.begin(); mit != map.end() ; ++mit)
 	{
-	    YCPValue key = mit->first;
-	    YCPValue val = mit->second;
+	    YCPValue key = mit.key();
+	    YCPValue val = mit.value();
 
 	    DBusMessageIter map_item_it;
 	    y2debug("Opening map item container");
@@ -1282,7 +1280,7 @@ std::string DBusMsg::typeStr(const YCPValue &val, bool bsv_enc) const
 	YCPMap map = val->asMap();
 
 	// get key type, use string as a fallback for an empty map
-	std::string key_type((map.size() > 0) ? typeStr(map.begin()->first, bsv_enc) : "s");
+	std::string key_type((map.size() > 0) ? typeStr(map.begin().key(), bsv_enc) : "s");
 
 	if (bsv_enc)
 	{
