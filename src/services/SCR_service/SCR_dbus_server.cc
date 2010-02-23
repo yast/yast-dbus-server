@@ -9,6 +9,8 @@
 
 int main(int argc, char **argv)
 {
+    // needed by libpolkit
+    g_type_init();
 
     DBusServer server;
 
