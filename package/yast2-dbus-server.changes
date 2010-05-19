@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed May 19 16:14:05 CEST 2010 - mvidner@suse.cz
+
+- Better fix: dbus_bool_t instead of int (bnc#606712).
+- 2.17.2
+
+-------------------------------------------------------------------
 Tue May 18 16:52:35 CEST 2010 - mvidner@suse.cz
 
 - Fixed retrieving boolean values on big-endian archs (bnc#606712).
