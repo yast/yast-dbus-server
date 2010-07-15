@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Thu Jul 15 11:05:35 UTC 2010 - lslezak@suse.cz
+
+- set PATH environment to the default if it's not set (bnc#617442)
+- 2.20.0
+
+-------------------------------------------------------------------
 Wed May 19 16:14:05 CEST 2010 - mvidner@suse.cz
 
 - Better fix: dbus_bool_t instead of int (bnc#606712).
