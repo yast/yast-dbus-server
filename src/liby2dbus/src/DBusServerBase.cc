@@ -9,6 +9,7 @@
 
 #include "DBusServerBase.h"
 #include "DBusMsg.h"
+#include "search_path.h"
 
 #include <ycp/y2log.h>
 
@@ -25,6 +26,9 @@ DBusServerBase::DBusServerBase(bool testmode)
 {
     test_mode = testmode;
     dbus_threads_init_default();
+
+    // set default PATH if not set
+    set_default_path();
 }
 
 DBusServerBase::~DBusServerBase()
