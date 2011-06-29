@@ -984,9 +984,12 @@ YCPValue DBusMsg::getYCPValueRawAny(DBusMessageIter *it) const
 	// DBUS_TYPE_ARRAY is used for YCPList and YCPMap
 	y2debug("Reading RAW DBus array");
 
-	// is the container a map or a list?
-	// An empty map is indistinguishable from a list!
-	if (dbus_message_iter_get_arg_type(&sub) == DBUS_TYPE_DICT_ENTRY)
+	// is the container a map or a list? => check the signature of the iterator
+	// hash signature starts with '{', examples: list signature: "s", map signature: "{sv}"
+	std::string cont_sig(dbus_message_iter_get_signature(&sub));
+	y2debug("Container signature: %s", cont_sig.c_str());
+
+	if (!cont_sig.empty() && cont_sig[0] == '{')
 	{
 	    y2debug("Found a map");
 	    ret = getYCPValueMap(&sub, Type::Any, Type::Unspec);

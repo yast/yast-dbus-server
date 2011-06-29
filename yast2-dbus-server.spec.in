@@ -3,7 +3,6 @@
 
 @HEADER@
 Group:	System/YaST
-License: GPL v2 or later
 # obviously
 BuildRequires:	gcc-c++
 # needed for all yast packages
@@ -33,7 +32,6 @@ to YaST components.
 
 @PREP@
 
-%build
 @BUILD@
 
 @INSTALL@
