@@ -78,6 +78,18 @@ class ParamPassing(unittest.TestCase):
     lst = [1, 2, 3]
     self.assertEqual(self.T.ParamList(lst), lst)
 
+  # test sending/receivng a map, test also empty map and list (bnc#588593)
+  def testMap(self):
+    map = {
+	"string" : True,
+	"list" : ["a", "b", "c"],
+	"map" : { "key" : "value"},
+	# python cannot guess signature for empty containers, set it explicitly
+	"empty_list" : dbus.Array([], "s"),
+	"empty_map" : dbus.Dictionary({}, "sv")
+    }
+    self.assertEqual(self.T.ParamMap(map), map)
+
 #Term is not exported
 #  def testTerm(self):
 #    term = ["name", "two", "three"]
