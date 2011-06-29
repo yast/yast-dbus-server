@@ -4,6 +4,7 @@
 @HEADER@
 Group:	System/YaST
 License: GPL v2 or later
+Url:	http://en.opensuse.org/Portal:YaST
 # obviously
 BuildRequires:	gcc-c++
 # needed for all yast packages
