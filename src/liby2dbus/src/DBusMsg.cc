@@ -386,8 +386,6 @@ bool DBusMsg::addValueAt(const YCPValue &val, DBusMessageIter *i, constTypePtr r
 
 	DBusMessageIter array_it;
 
-	YCPMap::const_iterator mit = map.begin();
-
 	std::string map_signature("{" + map_key_type + map_val_type + "}");
 
 	// open array container
