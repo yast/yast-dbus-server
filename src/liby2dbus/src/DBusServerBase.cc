@@ -145,7 +145,7 @@ void DBusServerBase::run(bool forever)
 	    // the time is over
 	    if (!timeout_counter)
 	    {
-		y2debug("Timout reached");
+		y2debug("Timeout reached");
 
 		if (canFinish())
 		{
