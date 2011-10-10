@@ -386,8 +386,6 @@ bool DBusMsg::addValueAt(const YCPValue &val, DBusMessageIter *i, constTypePtr r
 
 	DBusMessageIter array_it;
 
-	YCPMap::const_iterator mit = map.begin();
-
 	std::string map_signature("{" + map_key_type + map_val_type + "}");
 
 	// open array container
@@ -796,7 +794,7 @@ YCPValue DBusMsg::getYCPValueRawType(DBusMessageIter *it, constTypePtr ycptype) 
     {
 	if (type == DBUS_TYPE_BOOLEAN)
 	{
-	    bool b;
+	    dbus_bool_t b; // not bool, bnc#606712
 	    dbus_message_iter_get_basic(it, &b);
 	    ret = YCPBoolean(b);
 	    mismatch = false;
@@ -967,7 +965,7 @@ YCPValue DBusMsg::getYCPValueRawAny(DBusMessageIter *it) const
     // TODO support more types
     if (type == DBUS_TYPE_BOOLEAN)
     {
-	bool b;
+	dbus_bool_t b; // not bool, bnc#606712
 	dbus_message_iter_get_basic(it, &b);
 	ret = YCPBoolean(b);
     }
@@ -986,9 +984,12 @@ YCPValue DBusMsg::getYCPValueRawAny(DBusMessageIter *it) const
 	// DBUS_TYPE_ARRAY is used for YCPList and YCPMap
 	y2debug("Reading RAW DBus array");
 
-	// is the container a map or a list?
-	// An empty map is indistinguishable from a list!
-	if (dbus_message_iter_get_arg_type(&sub) == DBUS_TYPE_DICT_ENTRY)
+	// is the container a map or a list? => check the signature of the iterator
+	// hash signature starts with '{', examples: list signature: "s", map signature: "{sv}"
+	std::string cont_sig(dbus_message_iter_get_signature(&sub));
+	y2debug("Container signature: %s", cont_sig.c_str());
+
+	if (!cont_sig.empty() && cont_sig[0] == '{')
 	{
 	    y2debug("Found a map");
 	    ret = getYCPValueMap(&sub, Type::Any, Type::Unspec);

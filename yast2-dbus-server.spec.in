@@ -3,7 +3,8 @@
 
 @HEADER@
 Group:	System/YaST
-License: GPL v2 or later
+License: GPL-2.0+
+Url:	http://en.opensuse.org/Portal:YaST
 # obviously
 BuildRequires:	gcc-c++
 # needed for all yast packages
@@ -19,6 +20,8 @@ BuildRequires:	sgml-skel
 
 # for SCR DBus service
 BuildRequires:	dbus-1-devel dbus-1-x11 polkit-devel libxcrypt-devel
+# its tests
+BuildRequires:  dbus-1-python python-devel
 
 Summary:	YaST2 - DBus Server
 
