@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Fri Nov 25 12:19:01 UTC 2011 - coolo@suse.com
+
+- add libtool as buildrequire to avoid implicit dependency
+
+-------------------------------------------------------------------
 Wed Jun 29 11:19:50 UTC 2011 - lslezak@suse.cz
 
 - properly distinguish between received empty map and empty list
