@@ -6,7 +6,7 @@ Group:	System/YaST
 License: GPL-2.0+
 Url:	http://en.opensuse.org/Portal:YaST
 # obviously
-BuildRequires:	gcc-c++
+BuildRequires:	gcc-c++ libtool
 # needed for all yast packages
 BuildRequires:	yast2-devtools yast2-core-devel
 # testsuite
