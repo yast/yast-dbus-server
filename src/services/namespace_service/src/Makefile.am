@@ -20,12 +20,13 @@ yast_modules_dbus_server_CPPFLAGS = $(AM_CPPFLAGS) $(DBUS_CFLAGS) $(POLKIT_CFLAG
 yast_modules_dbus_server_LDADD = ${AGENT_LIBADD} $(top_builddir)/src/liby2dbus/src/liby2dbus.la -lycp -ly2 -ly2util ${libdir}/YaST2/plugin/libpy2wfm.la
 
 # PolicyKit defaults
-polkit_policiesdir = `pkg-config --print-errors --variable policydir polkit`
+polkit_policiesdir = `pkg-config --print-errors --variable policydir polkit-gobject-1`
 polkit_policies_DATA = org.opensuse.yast.module-manager.policy
 
+# TODO FIXME: temporarily disabled, polkit-policy-file-validate is part of deprecated package PolicyKit.rpm
 # validate the policy files in 'make check' target
-check-local:
-	polkit-policy-file-validate $(polkit_policies_DATA)
+#check-local:
+#	polkit-policy-file-validate $(polkit_policies_DATA)
 
 
 # service activation config

@@ -23,16 +23,16 @@ AC_ARG_ENABLE([policykit],
         [policykit=yes])
 
 if test "x${policykit}" == xyes ; then
-    PKG_CHECK_MODULES(POLKIT, [ polkit-dbus >= 0.7 ],
+    PKG_CHECK_MODULES(POLKIT, [ polkit-gobject-1 ],
         [
             HAVE_POLKIT=1
             AC_DEFINE([HAVE_POLKIT], 1, [Have PolicyKit])
-            policydir=`pkg-config polkit-dbus --variable prefix`/share/PolicyKit/policy/
+            policydir=`pkg-config polkit-gobject-1 --variable policydir`
             AC_SUBST(policydir)
         ],
         [
             HAVE_POLKIT=0
-            AC_MSG_ERROR([*** PolicyKit support not found, install PolicyKit-devel: 'zypper in PolicyKit-devel' or libpolkit-dbus-dev.deb])
+            AC_MSG_ERROR([*** PolicyKit support not found, install polkit-devel: 'zypper in polkit-devel' or libpolkit-gobject-1-dev.deb])
         ])
 else
     HAVE_POLKIT=0
