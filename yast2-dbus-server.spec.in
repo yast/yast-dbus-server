@@ -19,7 +19,9 @@ BuildRequires:	docbook-xsl-stylesheets libxslt
 BuildRequires:	sgml-skel
 
 # for SCR DBus service
-BuildRequires:	dbus-1-devel dbus-1-x11 PolicyKit-devel libxcrypt-devel
+BuildRequires:	dbus-1-devel dbus-1-x11 polkit-devel libxcrypt-devel
+# its tests
+BuildRequires:  dbus-1-python python-devel
 # its tests
 BuildRequires:  dbus-1-python python-devel
 
@@ -65,13 +67,13 @@ dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.D
 /usr/share/dbus-1/system-services/org.opensuse.yast.SCR.service
 %config /etc/dbus-1/system.d/org.opensuse.yast.SCR.conf
 # PolicyKit default policies
-/usr/share/PolicyKit/policy/org.opensuse.yast.scr.policy
+/usr/share/polkit-1/actions/org.opensuse.yast.scr.policy
 
 # DBus namespace service
 @ybindir@/yast_modules_dbus_server
 /usr/share/dbus-1/system-services/org.opensuse.YaST.modules.service
 %config /etc/dbus-1/system.d/org.opensuse.YaST.modules.conf
-/usr/share/PolicyKit/policy/org.opensuse.yast.module-manager.policy
+/usr/share/polkit-1/actions/org.opensuse.yast.module-manager.policy
 
 %doc @docdir@
 

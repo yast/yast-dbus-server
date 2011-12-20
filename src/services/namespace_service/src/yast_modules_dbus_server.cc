@@ -53,6 +53,9 @@ int main(int argc, char **argv)
 	return 1;
     }
 
+    // needed by libpolkit
+    g_type_init();
+
     DBusModulesServer server(modules, test_mode);
     bool connected = server.connect();
 

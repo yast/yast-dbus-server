@@ -261,11 +261,6 @@ void DBusServerBase::run(bool forever)
 	    DBusError dbus_error;
 	    dbus_error_init(&dbus_error);
 
-#ifdef HAVE_POLKIT
-	    // check for changes in policykit config
-	    policykit.checkPolkitChanges();
-#endif
-
 	    // check the policy using PolicyKit, the check is disabled in the test mode
 	    if (test_mode || isActionAllowed(request, &dbus_error))
 	    {
