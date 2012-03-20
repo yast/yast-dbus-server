@@ -187,7 +187,7 @@ void DBusServerBase::run(bool forever)
 		// introcpection data for the root node
 		DBUS_INTROSPECT_1_0_XML_DOCTYPE_DECL_NODE
 		"\n<node>\n"
-		" <interface name='"DBUS_INTERFACE_INTROSPECTABLE"'>\n"
+		" <interface name='" DBUS_INTERFACE_INTROSPECTABLE "'>\n"
 		"  <method name='Introspect'>\n"
 		"   <arg name='xml_data' type='s' direction='out'/>\n"
 		"  </method>\n"
