@@ -184,7 +184,7 @@ DBusMsg DBusServer::handler(const DBusMsg &request)
 
 	    if (!ret.isNull())
 	    {
-		y2milestone("Result: %s", ret->toString().c_str());
+		y2debug("Result: %s", ret->toString().c_str());
 		reply.addYCPValue(ret);
 	    }
 	    else

@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Fri Dec  7 12:56:15 UTC 2012 - lslezak@suse.cz
+
+- do not log the results of method calls by default (use y2debug),
+  the results might contain sensitive data (like passwords, keys,
+  registration codes...) (bnc#790274)
+- 2.17.5
+
+-------------------------------------------------------------------
 Wed Jun 29 11:19:50 UTC 2011 - lslezak@suse.cz
 
 - properly distinguish between received empty map and empty list

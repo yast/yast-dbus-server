@@ -529,7 +529,7 @@ DBusMsg DBusModulesServer::handler(const DBusMsg &request)
 
     if (!ret.isNull())
     {
-	y2milestone("Result: %s", ret->toString().c_str());
+	y2debug("Result: %s", ret->toString().c_str());
 
 	// return empty message for void functions
 	if (!ret->isVoid())
