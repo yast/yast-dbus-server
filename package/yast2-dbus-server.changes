@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Fri Dec  7 12:56:15 UTC 2012 - lslezak@suse.cz
+
+- do not log the results of method calls by default (use y2debug),
+  the results might contain sensitive data (like passwords, keys,
+  registration codes...) (bnc#790274)
+- 2.23.0
+
+-------------------------------------------------------------------
 Tue Mar 20 12:45:43 CET 2012 - aschnell@suse.de
 
 - fixed for gcc 4.7
