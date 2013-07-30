@@ -25,6 +25,9 @@ BuildRequires:  dbus-1-python python-devel
 # its tests
 BuildRequires:  dbus-1-python python-devel
 
+# to run the tests
+BuildRequires:  yast2-ruby-bindings >= 1.0.0
+
 Summary:	YaST2 - DBus Server
 
 %description

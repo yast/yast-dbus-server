@@ -42,6 +42,7 @@
   <method name='String'><arg name='ret' type='s' direction='out'/></method>
   <method name='Symbol'><arg name='ret' type='s' direction='out'/></method>
   <method name='Void'></method>
+  <method name='last_exception'><arg name='ret' type='s' direction='out'/></method>
  </interface>
  <interface name='org.opensuse.YaST.YCPValues'>
   <method name='Any'><arg name='ret' type='(bsv)' direction='out'/></method>
@@ -80,6 +81,7 @@
   <method name='String'><arg name='ret' type='(bsv)' direction='out'/></method>
   <method name='Symbol'><arg name='ret' type='(bsv)' direction='out'/></method>
   <method name='Void'></method>
+  <method name='last_exception'><arg name='ret' type='(bsv)' direction='out'/></method>
  </interface>
 </node>
 "
