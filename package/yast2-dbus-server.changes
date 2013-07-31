@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Jul 31 08:28:10 UTC 2013 - yast-devel@opensuse.org
+
+- converted from YCP to Ruby by YCP Killer
+  (https://github.com/yast/ycp-killer)
+- version 3.0.0
+
+-------------------------------------------------------------------
 Fri Dec  7 12:56:15 UTC 2012 - lslezak@suse.cz
 
 - do not log the results of method calls by default (use y2debug),
