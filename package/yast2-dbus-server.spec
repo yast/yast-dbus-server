@@ -1,14 +1,35 @@
-@HEADER-COMMENT@
+#
+# spec file for package yast2-dbus-server
+#
+# Copyright (c) 2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
 
+# Please submit bugfixes or comments via http://bugs.opensuse.org/
+#
 
-@HEADER@
-Group:	System/YaST
-License: GPL-2.0+
-Url:	http://en.opensuse.org/Portal:YaST
+Name:           yast2-dbus-server
+Version:        3.0.1
+Release:        0
+
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+Source0:        %{name}-%{version}.tar.bz2
+
+Group:	        System/YaST
+License:        GPL-2.0+
+Url:	        http://en.opensuse.org/Portal:YaST
 # obviously
 BuildRequires:	gcc-c++ libtool
 # needed for all yast packages
-BuildRequires:	yast2-devtools yast2-core-devel
+BuildRequires:	yast2-core-devel
+BuildRequires:  yast2-devtools >= 3.0.6
 # testsuite
 BuildRequires:	dejagnu
 # autodocs
@@ -34,18 +55,19 @@ Summary:	YaST2 - DBus Server
 This package contains YaST DBus service, it provides DBus access 
 to YaST components.
 
-@PREP@
+%prep
+%setup -n %{name}-%{version}
 
 %build
-@BUILD@
+%yast_build
 
-@INSTALL@
+%install
+%yast_install
 
 # remove not needed development files
-rm %{buildroot}/@plugindir@/liby2dbus.la
-rm %{buildroot}/@plugindir@/liby2dbus.so
+rm %{buildroot}/%{yast_plugindir}/liby2dbus.la
+rm %{buildroot}/%{yast_plugindir}/liby2dbus.so
 
-@CLEAN@
 
 %post
 /sbin/ldconfig
@@ -62,10 +84,10 @@ dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.D
 %files
 %defattr(-,root,root)
 
-@plugindir@/lib*.so.*
+%{yast_plugindir}/lib*.so.*
 
 # DBus service
-@ybindir@/SCR_dbus_server
+%{yast_ybindir}/SCR_dbus_server
 # DBus service config
 /usr/share/dbus-1/system-services/org.opensuse.yast.SCR.service
 %config /etc/dbus-1/system.d/org.opensuse.yast.SCR.conf
@@ -73,10 +95,10 @@ dbus-send --print-reply --system --dest=org.freedesktop.DBus / org.freedesktop.D
 /usr/share/polkit-1/actions/org.opensuse.yast.scr.policy
 
 # DBus namespace service
-@ybindir@/yast_modules_dbus_server
+%{yast_ybindir}/yast_modules_dbus_server
 /usr/share/dbus-1/system-services/org.opensuse.YaST.modules.service
 %config /etc/dbus-1/system.d/org.opensuse.YaST.modules.conf
 /usr/share/polkit-1/actions/org.opensuse.yast.module-manager.policy
 
-%doc @docdir@
+%doc %{yast_docdir}
 
