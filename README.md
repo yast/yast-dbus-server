@@ -1,6 +1,11 @@
-## YaST - DBus Server
+Obsoleted Module
+================
 
-[![Travis Build](https://travis-ci.org/yast/yast-dbus-server.svg?branch=master)](https://travis-ci.org/yast/yast-dbus-server)
-[![Jenkins Build](http://img.shields.io/jenkins/s/https/ci.opensuse.org/yast-dbus-server-master.svg)](https://ci.opensuse.org/view/Yast/job/yast-dbus-server-master/)
+**This module is obsoleted and is not developed anymore.**
 
+GIT
+---
 
+If you want to see the last state check the [*master_old*](../../tree/master_old) branch.
+
+Use [*SLE12-SP3*](../SLE12-SP32) branch for SLES12 maintenance.
